@@ -11,6 +11,8 @@ const InfoStack = createStackNavigator();
 export default InfoNavigator = () => {
   return (
     <InfoStack.Navigator>
+      {/* <InfoStack.Screen name="Home" component={HomeScreen} />
+      <InfoStack.Screen name="Chart" component={ChartScreen} /> */}
       <InfoStack.Screen name="Info" component={InfoScreen} />
     </InfoStack.Navigator>
   )

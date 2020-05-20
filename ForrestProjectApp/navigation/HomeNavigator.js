@@ -12,6 +12,8 @@ export default HomeNavigator = () => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
+      {/* <HomeStack.Screen name="Chart" component={ChartScreen} />
+      <HomeStack.Screen name="Info" component={InfoScreen} /> */}
     </HomeStack.Navigator>
   )
 };

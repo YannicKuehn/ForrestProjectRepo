@@ -30,6 +30,10 @@ export default HomeScreen = props => {
           </View>
         </Modal>
 
+        <View style={styles.container}>
+          <Text>HomeScreen</Text>
+        </View>
+
       </View>
     </TouchableWithoutFeedback>
 
@@ -62,6 +66,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 20,
     color: "white",
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 });

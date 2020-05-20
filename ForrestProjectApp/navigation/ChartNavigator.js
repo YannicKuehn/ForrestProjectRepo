@@ -11,7 +11,9 @@ const ChartStack = createStackNavigator();
 export default ChartNavigator = () => {
   return (
     <ChartStack.Navigator>
-      <ChartStack.Screen name="Info" component={InfoScreen} />
+      {/* <ChartStack.Screen name="Home" component={HomeScreen} /> */}
+      <ChartStack.Screen name="Chart" component={ChartScreen} />
+      {/* <ChartStack.Screen name="Info" component={InfoScreen} /> */}
     </ChartStack.Navigator>
   )
 }
