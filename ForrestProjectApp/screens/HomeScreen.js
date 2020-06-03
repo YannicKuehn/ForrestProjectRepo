@@ -4,6 +4,7 @@ import { useDimensions } from '@react-native-community/hooks';
 import { Button } from 'react-native-elements';
 
 // Custom Imports
+import TextStyles from '../constants/TextStyles';
 // ...
 
 export default HomeScreen = props => {
@@ -23,8 +24,8 @@ export default HomeScreen = props => {
         
         <Modal statusBarTransluent={true} visible={modalVisible} animationType="slide" >
           <View style={{flex: 1, justifyContent: "center", alignItems: "stretch"}}>
-            <ImageBackground source={imageBgSource} style={styles.imageBg} >
-              <Text style={styles.appName}>Modal over HomeScreen</Text>
+            <ImageBackground source={imageBgSource} style={styles.imageBg}>
+              <Text style={[TextStyles.headlineH1, styles.headlineBG]}> World amount of Forest </Text>
               <Button title="enter site" onPress={modalHandler} />
             </ImageBackground>
           </View>
@@ -59,6 +60,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  headlineBG: {
+    fontSize: 30,
+    backgroundColor: 'white'
   },
 
   appName: {

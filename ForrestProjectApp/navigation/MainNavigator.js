@@ -37,8 +37,9 @@ export default MainNavigator = () => {
             }
           },
         })}
+
         tabBarOptions={{
-          activeTintColor: 'darkcyan',
+          activeTintColor: 'darkseagreen',
           inactiveTintColor: 'gray',
         }}
       >
