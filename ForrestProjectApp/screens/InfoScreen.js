@@ -7,30 +7,32 @@ import TextStyles from '../constants/TextStyles';
 
 export default InfoScreen = props => {
 
-  const users = [
+  const teamMembers = [
     {
       name: "Tobias Rawald",
-      age: 25
+      avatar: require("../assets/img/avatar_batman.png"),
     },
     {
       name: "Yannic Kühn",
-      age: 25
+      avatar: require("../assets/img/avatar_deadpool.png"),
     }
   ];
 
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={TextStyles.textHeadline1}>InfoScreen</Text>
+        <Text style={[TextStyles.textHeadline1, { marginBottom: 20 }]}>InfoScreen</Text>
         <Text style={TextStyles.textDefault}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
-        <Card title="Team" containerStyle={{width: 200, margin: 0}}>
+        <Card title="Team" titleStyle={TextStyles.textHeadline2} containerStyle={{ width: 210, margin: 0 }}>
           {
-            users.map((u,i) => {
+            teamMembers.map((u, i) => {
               return (
-                <ListItem style={TextStyles.textDefault}
+                <ListItem
                   key={i}
                   roundAvatar
-                  title={u.name + ", " + u.age}
+                  leftAvatar={{ source: u.avatar }}
+                  title={u.name}
+                  titleStyle={TextStyles.textBold}
                 />
               )
             })

@@ -1,10 +1,17 @@
 export default {
   textHeadline1: {
-      fontFamily: 'OpenSansBold',
-      color: 'darkslategrey',
-      backgroundColor: "white",
-      fontSize: 20,
-      marginBottom: 20,
+    fontFamily: 'OpenSansBold',
+    color: 'darkslategrey',
+    backgroundColor: "white",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+
+  textHeadline2: {
+    fontFamily: 'OpenSansBold',
+    color: 'darkslategrey',
+    backgroundColor: "white",
+    fontSize: 14,
   },
 
   textDefault: {
@@ -15,10 +22,9 @@ export default {
   },
 
   textBold: {
-    fontFamily: 'OpenSanwsBold',
+    fontFamily: 'OpenSansBold',
     color: 'gray',
     fontSize: 12,
-    marginBottom: 20,
   },
 
   textButton: {

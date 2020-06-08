@@ -6,6 +6,9 @@ import { Button } from 'react-native-elements';
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import CustomButton from '../components/CustomButton';
+import CustomSearchBar from '../components/CustomSearchBar';
+import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
+import CustomSlider from '../components/CustomSlider';
 // ...
 
 export default HomeScreen = props => {
@@ -23,6 +26,7 @@ export default HomeScreen = props => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
 
+        {/* --- Modal --- */}
         <Modal statusBarTransluent={true} visible={modalVisible} animationType="slide" >
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
@@ -35,8 +39,20 @@ export default HomeScreen = props => {
           </View>
         </Modal>
 
+        {/* --- SearchBar --- */}
+        <View style={height > windowHeight ? styles.searchBarVertical : styles.searchBarHorizontal}>
+          <CustomButtonWithIcons name="md-menu" size={32} color="black" />
+          <CustomSearchBar placeholder="Country" />
+          <CustomButtonWithIcons name="md-search" size={32} color="black" />
+        </View>
+
         <View style={styles.container}>
           <Text>HomeScreen</Text>
+        </View>
+
+        {/* --- Slider --- */}
+        <View style={styles.sliderContainer}>
+          <CustomSlider />
         </View>
 
       </View>
@@ -81,6 +97,23 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: "center", 
     alignItems: "stretch"
+  },
+
+  searchBarVertical: {
+    // paddingTop: 30,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  searchBarHorizontal: {
+    // paddingTop: 20,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  sliderContainer: {
+    width: "80%",
+    marginBottom: 10,
   },
 
 });
