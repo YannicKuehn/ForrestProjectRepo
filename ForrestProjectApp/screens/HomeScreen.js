@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
+import CustomButton from '../components/CustomButton';
 // ...
 
 export default HomeScreen = props => {
@@ -20,13 +21,16 @@ export default HomeScreen = props => {
   return (
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori }>
-        
+      <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
+
         <Modal statusBarTransluent={true} visible={modalVisible} animationType="slide" >
-          <View style={{flex: 1, justifyContent: "center", alignItems: "stretch"}}>
+          <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <Text style={[TextStyles.headlineH1, styles.headlineBG]}> World amount of Forest </Text>
-              <Button title="enter site" onPress={modalHandler} />
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> World amount </Text></View>
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> of Forest </Text></View>
+              <View style={{marginTop: 100}}><CustomButton title="enter site" onPress={modalHandler} /></View>
+              
+              {/* <Button title="enter site" onPress={modalHandler} /> */}
             </ImageBackground>
           </View>
         </Modal>
@@ -64,14 +68,6 @@ const styles = StyleSheet.create({
 
   headlineBG: {
     fontSize: 30,
-    backgroundColor: 'white'
-  },
-
-  appName: {
-    fontFamily: "OpenSansBold",
-    fontSize: 20,
-    padding: 20,
-    color: "white",
   },
 
   container: {
@@ -79,6 +75,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  viewContainer: {
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "stretch"
   },
 
 });

@@ -21,13 +21,13 @@ export default InfoScreen = props => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={TextStyles.headlineH1} >InfoScreen</Text>
-        <Text style={TextStyles.defaultText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
+        <Text style={TextStyles.textHeadline1}>InfoScreen</Text>
+        <Text style={TextStyles.textDefault}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
         <Card title="Team" containerStyle={{width: 200, margin: 0}}>
           {
             users.map((u,i) => {
               return (
-                <ListItem style={TextStyles.defaultText}
+                <ListItem style={TextStyles.textDefault}
                   key={i}
                   roundAvatar
                   title={u.name + ", " + u.age}

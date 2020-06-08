@@ -1,15 +1,30 @@
 export default {
-  headlineH1: {
+  textHeadline1: {
       fontFamily: 'OpenSansBold',
-      color: 'darkseagreen',
+      color: 'darkslategrey',
+      backgroundColor: "white",
       fontSize: 20,
       marginBottom: 20,
   },
 
-  defaultText: {
+  textDefault: {
     fontFamily: 'OpenSansReg',
     color: 'gray',
     fontSize: 12,
     marginBottom: 20,
   },
+
+  textBold: {
+    fontFamily: 'OpenSanwsBold',
+    color: 'gray',
+    fontSize: 12,
+    marginBottom: 20,
+  },
+
+  textButton: {
+    fontFamily: "OpenSansBold",
+    color: "white",
+    fontSize: 16,
+  },
+
 }
