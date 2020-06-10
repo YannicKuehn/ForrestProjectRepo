@@ -21,7 +21,7 @@ export default InfoScreen = props => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={[TextStyles.textHeadline1, { marginBottom: 20 }]}>InfoScreen</Text>
+        <Text style={[TextStyles.textHeadline1, { marginTop: 20, marginBottom: 20 }]}>InfoScreen</Text>
         <Text style={TextStyles.textDefault}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
         <Card title="Team" titleStyle={TextStyles.textHeadline2} containerStyle={{ width: 210, margin: 0 }}>
           {

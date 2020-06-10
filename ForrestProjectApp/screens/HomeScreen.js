@@ -14,26 +14,29 @@ import CustomSlider from '../components/CustomSlider';
 export default HomeScreen = props => {
 
   const imageBgSource = require("../assets/img/dummyBG.jpg");
-  const [modalVisible, setModalVisible] = useState(true);
+  const [mainModalVisible, setMainModalVisible] = useState(true);
+  const [menuModalVisible, setMenuModalVisible] = useState(false);
 
   let windowHeight = 620;
   const { height } = useDimensions().window;
 
-  const modalHandler = () => { setModalVisible(false); }
+  const mainModalHandler = () => { setMainModalVisible(false); }
+  const menuModalHandler = () => { setMenuModalVisible(true); }
+
 
   return (
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
 
-        {/* --- Modal --- */}
-        <Modal statusBarTransluent={true} visible={modalVisible} animationType="slide" >
+        {/* --- MainModal --- */}
+        <Modal statusBarTransluent={true} visible={mainModalVisible} animationType="slide">
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
               <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> World amount </Text></View>
               <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> of Forest </Text></View>
-              <View style={{marginTop: 100}}><CustomButton title="enter site" onPress={modalHandler} /></View>
-              
+              <View style={{ marginTop: 100 }}><CustomButton title="enter site" onPress={mainModalHandler} /></View>
+
               {/* <Button title="enter site" onPress={modalHandler} /> */}
             </ImageBackground>
           </View>
@@ -41,10 +44,18 @@ export default HomeScreen = props => {
 
         {/* --- SearchBar --- */}
         <View style={height > windowHeight ? styles.searchBarVertical : styles.searchBarHorizontal}>
-          <CustomButtonWithIcons name="md-menu" size={32} color="black" />
+          <CustomButtonWithIcons name="md-menu" size={32} color="dimgray" onPress={menuModalHandler} />
           <CustomSearchBar placeholder="Country" />
-          <CustomButtonWithIcons name="md-search" size={32} color="black" />
+          <CustomButtonWithIcons name="md-search" size={32} color="dimgray" onPress={() => { console.log("Pressed Search Icon") }} />
         </View>
+
+        {/* --- MenuModal --- */}
+        <Modal statusBarTransluent={true} visible={menuModalVisible} animationType="slide" presentationStyle="fullScreen">
+          <View style={{ flex: 1, width: 200, justifyContent: 'center', borderWidth: 1, borderColor: "blue" }}>
+            <Text>Some Text!</Text>
+            <CustomButtonWithIcons name="md-close" size={32} color="dimgray" onPress={() => { setMenuModalVisible(false); }} />
+          </View>
+        </Modal>
 
         <View style={styles.container}>
           <Text>HomeScreen</Text>
@@ -94,19 +105,19 @@ const styles = StyleSheet.create({
   },
 
   viewContainer: {
-    flex: 1, 
-    justifyContent: "center", 
+    flex: 1,
+    justifyContent: "center",
     alignItems: "stretch"
   },
 
   searchBarVertical: {
-    // paddingTop: 30,
+    paddingTop: 20,
     flexDirection: "row",
     alignItems: "center",
   },
 
   searchBarHorizontal: {
-    // paddingTop: 20,
+    paddingTop: 20,
     flexDirection: "row",
     alignItems: "center",
   },

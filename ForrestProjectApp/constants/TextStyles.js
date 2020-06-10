@@ -16,14 +16,14 @@ export default {
 
   textDefault: {
     fontFamily: 'OpenSansReg',
-    color: 'gray',
+    color: 'dimgray',
     fontSize: 12,
     marginBottom: 20,
   },
 
   textBold: {
     fontFamily: 'OpenSansBold',
-    color: 'gray',
+    color: 'dimgray',
     fontSize: 12,
   },
 
