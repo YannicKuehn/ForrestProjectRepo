@@ -5,6 +5,8 @@ import { AppLoading } from 'expo';
 
 import MainNavigator from './navigation/MainNavigator';
 
+
+
 export default function App() {
 
   let [fontsLoaded] = useFonts({
