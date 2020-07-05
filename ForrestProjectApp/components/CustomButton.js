@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'darkslategrey',
+    backgroundColor: '#3B6978',
     padding: 15,
     minWidth: 40,
     maxWidth: 300,
-    shadowColor: 'darkslategrey',
+    shadowColor: '#204051',
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,

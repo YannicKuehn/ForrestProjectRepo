@@ -2,15 +2,27 @@ export default {
   textHeadline1: {
     fontFamily: 'OpenSansBold',
     color: 'darkslategrey',
-    backgroundColor: "white",
+    backgroundColor: "#E4E3E3",
     fontSize: 20,
     marginBottom: 10,
+  },
+
+  InfoHeadline: {
+    fontFamily: 'OpenSansBold',
+    color: '#E4E3E3',
+    fontSize: 20,
+  },
+
+  InfoText: {
+    fontFamily: 'OpenSansReg',
+    color: '#E4E3E3',
+    fontSize: 14,
   },
 
   textHeadline2: {
     fontFamily: 'OpenSansBold',
     color: 'darkslategrey',
-    backgroundColor: "white",
+    // backgroundColor: "#E4E3E3",
     fontSize: 14,
   },
 
@@ -29,7 +41,7 @@ export default {
 
   textButton: {
     fontFamily: "OpenSansBold",
-    color: "white",
+    color: "#E4E3E3",
     fontSize: 16,
   },
 

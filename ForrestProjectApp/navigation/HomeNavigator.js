@@ -10,7 +10,7 @@ const HomeStack = createStackNavigator();
 
 export default HomeNavigator = () => {
   return (
-    <HomeStack.Navigator screenOptions = {{headerShown: false}} >
+    <HomeStack.Navigator screenOptions={{ headerShown: false }} >
       <HomeStack.Screen name="Home" component={HomeScreen} />
       {/* <HomeStack.Screen name="Chart" component={ChartScreen} />
       <HomeStack.Screen name="Info" component={InfoScreen} /> */}

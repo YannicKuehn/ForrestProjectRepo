@@ -7,6 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 //   console.log("Klick the button");
 // }
 
+const menuIconChanger = () => { menuModalVisible === false ? "md-menu" : "md-close" };
+
 export default CustomButtonWithIcons = props => {
   return (
     <Button
@@ -17,11 +19,4 @@ export default CustomButtonWithIcons = props => {
       containerStyle={{ paddingLeft: 5, paddingRight: 5 }}
     />
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-
-  },
-
-});
+};
