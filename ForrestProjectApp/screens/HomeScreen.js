@@ -5,10 +5,6 @@ import { useDeviceOrientation } from '@react-native-community/hooks';
 import { SafeAreaProvider, useSafeArea } from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 import Modal from 'react-native-modal';
-import { Button } from 'react-native-elements';
-import { Video } from 'expo-av';
-
-
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
