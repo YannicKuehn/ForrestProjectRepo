@@ -4,15 +4,12 @@ import { useDimensions } from '@react-native-community/hooks';
 import { Button } from 'react-native-elements';
 import { Video } from 'expo-av';
 
-
-
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import CustomButton from '../components/CustomButton';
 import CustomSearchBar from '../components/CustomSearchBar';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
 import CustomSlider from '../components/CustomSlider';
-
 
 
 // ...
@@ -31,6 +28,51 @@ export default HomeScreen = props => {
   const modalHandler = () => { setModalVisible(false); }
 
 
+  const api_key = 'eV83pCVzmAdK2PH28K6hX1zPYsshUbCmHRtMPasB';
+  const [meteoridData_estimatedDiameter_meter_average , setMeteoridData_estimatedDiameter_meter_average] = useState();
+  const [meteoridData_isPotentiallyHazardousAsteroid , setMeteoridData_isPotentiallyHazardousAsteroid] = useState();
+  const [meteoridData_relativeVelocity , setMeteoridData_relativeVelocity] = useState();
+  const [meteoridData_name , setMeteoridData_name] = useState();
+
+  const [meteorid_counter,  setMeteorid_counter] = useState(0);
+  const [maxMeteroids, setMaxMeteorids] = useState(0);
+
+  const getCurrentDate = () => {
+    let date = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getFullYear();
+    return (year + "-" + ((month+1) < 10 ? "0" + (month+1) : (month+1)) + "-" + (date < 10 ? "0" + date : date));
+  }
+
+  const getMeteorData = async (date) => {
+    try {
+      let response = await fetch('https://api.nasa.gov/neo/rest/v1/feed?start_date=' + date + '&end_date='+ date + '&api_key=' + api_key);
+      let json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const pressHandler = () =>{
+    let date = getCurrentDate();
+    console.log(date);
+    if(meteorid_counter == 0 || meteorid_counter < maxMeteroids){
+      getMeteorData(date).then(data => {
+        setMaxMeteorids(data.element_count);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max)/2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter].name);      
+      });
+      setMeteorid_counter(meteorid_counter + 1);
+    } else {
+      setMeteorid_counter(0);
+    }
+  }
+
+
+
   return (
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -40,10 +82,11 @@ export default HomeScreen = props => {
         <Modal statusBarTransluent={true} visible={modalVisible} animationType="slide" >
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> World amount </Text></View>
-              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> of Forest </Text></View>
-              <View style={{marginTop: 100}}><CustomButton title="enter site" onPress={modalHandler} /></View>
-              
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Name: {meteoridData_name} </Text></View>
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Avarage estimated diameter: {meteoridData_estimatedDiameter_meter_average} m </Text></View>
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text></View>
+              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> {meteoridData_isPotentiallyHazardousAsteroid ? "gefährlich!" : "nicht gefährlich" } </Text></View>
+              <View style={{marginTop: 100}}><CustomButton title="Next Asteroid" onPress={pressHandler} /></View>       
               {/* <Button title="enter site" onPress={modalHandler} /> */}
             </ImageBackground>
           </View>
