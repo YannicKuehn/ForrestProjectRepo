@@ -6,6 +6,8 @@ import { AppearanceProvider } from 'react-native-appearance';
 
 import MainNavigator from './navigation/MainNavigator';
 
+
+
 export default function App() {
 
   let [fontsLoaded] = useFonts({

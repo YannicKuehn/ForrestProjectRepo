@@ -5,6 +5,10 @@ import { useDeviceOrientation } from '@react-native-community/hooks';
 import { SafeAreaProvider, useSafeArea } from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 import Modal from 'react-native-modal';
+import { Button } from 'react-native-elements';
+import { Video } from 'expo-av';
+
+
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
@@ -12,7 +16,6 @@ import CustomButton from '../components/CustomButton';
 import CustomSearchBar from '../components/CustomSearchBar';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
 import CustomSlider from '../components/CustomSlider';
-
 
 export const getDeviceHeight = () => {
   let { height } = useDimensions().window;
@@ -42,6 +45,7 @@ export default HomeScreen = ({ navigation }) => {
   const menuModalHandler = () => {
     menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false)
   };
+
 
   return (
 
@@ -121,6 +125,9 @@ export default HomeScreen = ({ navigation }) => {
     </TouchableWithoutFeedback>
   )
 };
+
+//const rootElement = document.getElementById("root");
+//ReactDOM.render(<HomeScreen />, rootElement);
 
 const styles = StyleSheet.create({
   mainViewVerti: {
@@ -214,6 +221,13 @@ const styles = StyleSheet.create({
   sliderContainer: {
     width: "80%",
     marginBottom: 10,
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 
 });
