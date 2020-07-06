@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { useDeviceOrientation, useDimensions } from '@react-native-community/hooks';
@@ -8,8 +8,13 @@ import SafeAreaView from 'react-native-safe-area-view';
 import TextStyles from '../constants/TextStyles';
 import { getDeviceWidth } from './HomeScreen';
 import Colors from '../constants/Colors';
+import { getColor1, getColor2, getColor3, getColor4, getColor5 } from '../constants/Themes'
+import { ThemeContext } from '../App';
 
 export default InfoScreen = ({ navigation }) => {
+
+  const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
+
 
   const teamMembers = [
     {
@@ -32,7 +37,7 @@ export default InfoScreen = ({ navigation }) => {
   // orientation.landscape && width > 800 ? paddingLandscape = 25 : paddingLandscape = 0;
 
   return (
-    <SafeAreaView style={devWidth > 800 ? styles.mainViewHori : styles.mainViewVerti}>
+    <SafeAreaView style={[devWidth > 800 ? styles.mainViewHori : styles.mainViewVerti, {backgroundColor: getColor3(themeIsLight)}]}>
       <View style={styles.textContainer}>
         <Text style={[TextStyles.infoHeadline, { marginTop: 0, marginBottom: 20 }]}>InfoScreen</Text>
 
@@ -43,7 +48,10 @@ export default InfoScreen = ({ navigation }) => {
           </View>
 
           <View style={height > windowHeight ? styles.cardViewVerti : styles.cardViewHori}>
-            <Card title="Team" dividerStyle={{borderWidth: 1, borderColor: Colors.lightDark2}} titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle} >
+            <Card title="Team" 
+              dividerStyle={{borderWidth: 1, borderColor: getColor2(themeIsLight)}} 
+              titleStyle={[TextStyles.infoTextBold, {color: getColor1(themeIsLight)}]} 
+              containerStyle={[styles.cardContainerStyle, {backgroundColor: getColor4(themeIsLight)} , { borderColor: getColor4(themeIsLight)}]} >
               {
                 teamMembers.map((u, i) => {
                   return (
@@ -52,8 +60,8 @@ export default InfoScreen = ({ navigation }) => {
                       roundAvatar
                       leftAvatar={{ source: u.avatar }}
                       title={u.name}
-                      titleStyle={TextStyles.infoNameBold}
-                      containerStyle={{backgroundColor: Colors.lightDark3}}                    />
+                      titleStyle={[TextStyles.infoNameBold, {color: getColor1(themeIsLight)}]}
+                      containerStyle={{backgroundColor: getColor3(themeIsLight)}}                    />
                   )
                 })
               }
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
 
   mainViewVerti: {
     flex: 1,
-    backgroundColor: Colors.lightDark3,
+    //backgroundColor: Colors.lightDark3,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
   mainViewHori: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: Colors.lightDark3,
+    //backgroundColor: Colors.lightDark3,
     ...Platform.select({
       ios: {
         padding: 50,

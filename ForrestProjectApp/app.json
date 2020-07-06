@@ -7,6 +7,10 @@
       "android",
       "web"
     ],
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "userInterfaceStyle": "dark"
+    },
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -22,7 +26,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "light"
     }
   }
 }

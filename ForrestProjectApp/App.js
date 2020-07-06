@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { createContext, useState} from 'react';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
+import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-appearance';
+
+
 
 // Custom Imports
 import MainNavigator from './navigation/MainNavigator';
 
+
+export const ThemeContext = createContext({});
+
+
 export default function App() {
+  const [themeIsLight, setThemeIsLight] = useState(true);
 
 
   let [fontsLoaded] = useFonts({
@@ -17,7 +25,12 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   } else {
-    return <MainNavigator />
-  };
+    return (
+      <AppearanceProvider>
+        <ThemeContext.Provider value={[themeIsLight, setThemeIsLight]}>
+          <MainNavigator/>
+        </ThemeContext.Provider>
+      </AppearanceProvider>
+    )};
 
 };

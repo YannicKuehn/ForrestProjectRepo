@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useDimensions } from '@react-native-community/hooks';
 import Modal from 'react-native-modal';
@@ -8,18 +8,13 @@ import TextStyles from '../constants/TextStyles';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
 import { useSafeArea } from 'react-native-safe-area-view';
 import Colors from '../constants/Colors';
+import { getColor1, getColor2, getColor3, getColor4, getColor5 } from '../constants/Themes'
+import { ThemeContext } from '../App';
+
 
 export default ChartScreen = ({ navigation }) => {
 
-  const picArray = [
-    '../assets/img/galaxy_01.jpg',
-    '../assets/img/galaxy_02.jpg',
-    '../assets/img/galaxy_03.jpg',
-    '../assets/img/galaxy_04.jpg',
-    '../assets/img/galaxy_05.jpg',
-    '../assets/img/galaxy_06.jpg',
-    '../assets/img/galaxy_07.jpg'
-  ];
+  const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
   
   const imageBgSource = require('../assets/img/galaxy_03.jpg');
   const [mainModalVisible, setMainModalVisible] = useState(true);
@@ -160,16 +155,16 @@ export default ChartScreen = ({ navigation }) => {
             <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
 
               {/* -- Daten -- */}
-              <View style={height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori}>
-                <Text style={[TextStyles.infoTextBold, { marginBottom: 15 }]}> Nearest Objects ({meteorid_counter + 1}) </Text>
-                <Text style={[TextStyles.astroidInfo]}> Name: {meteoridData_name} </Text>
-                <Text style={[TextStyles.astroidInfo]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
-                <Text style={[TextStyles.astroidInfo]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
-                <Text style={[TextStyles.astroidInfo]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
+              <View style={[height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori , {backgroundColor: getColor5(themeIsLight)}]}>
+                <Text style={[TextStyles.infoTextBold, {color: getColor1(themeIsLight)}, { marginBottom: 15 }]}> Nearest Objects ({meteorid_counter + 1}) </Text>
+                <Text style={[TextStyles.astroidInfo, {color: getColor1(themeIsLight)}]}> Name: {meteoridData_name} </Text>
+                <Text style={[TextStyles.astroidInfo, {color: getColor1(themeIsLight)}]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
+                <Text style={[TextStyles.astroidInfo, {color: getColor1(themeIsLight)}]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
+                <Text style={[TextStyles.astroidInfo, {color: getColor1(themeIsLight)}]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
 
                 <View style={{ flexDirection: "row", marginTop: 10, justifyContent: 'center', alignItems:"center"}}>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={Colors.lightDark1} onPress={pressHandlerBack} /></View>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.lightDark1} onPress={pressHandler} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={getColor1(themeIsLight)} onPress={pressHandlerBack} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={getColor1(themeIsLight)} onPress={pressHandler} /></View>
                 </View>
 
                 <View style={styles.buttonModalCloseIcon}>
@@ -195,13 +190,13 @@ export default ChartScreen = ({ navigation }) => {
             <CustomButtonWithIcons
               name="md-globe"
               size={32}
-              color={Colors.lightDark1}
+              color={getColor1(themeIsLight)}
               onPress={menuModalHandler}
               conStyle={{
                 paddingLeft: 5,
                 paddingRight: 5,
                 borderRadius: 25,
-                backgroundColor: Colors.lightDark4,
+                backgroundColor: getColor4(themeIsLight),
                 shadowColor: "#000",
                 shadowOffset: {
                   width: 0,
@@ -289,14 +284,14 @@ const styles = StyleSheet.create({
   },
 
   astroidTextViewVerti: {
-    backgroundColor: Colors.lightDark4RGB,
+    //backgroundColor: Colors.lightDark4RGB,
     color: 'transparent',
     borderRadius: 7,
     padding: 10,
   },
 
   astroidTextViewHori: {
-    backgroundColor: Colors.lightDark4RGB,
+    //backgroundColor: Colors.lightDark4RGB,
     color: 'transparent',
     borderRadius: 7,
     padding: 10,
