@@ -23,7 +23,7 @@ export default ChartScreen = ({ navigation }) => {
 
   const menuModalHandler = () => {
     if (!buttonDisabled) {
-      pressHandler();
+      firstFetch();
     }
     setButtonDisabled(true);
     menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
@@ -55,37 +55,71 @@ export default ChartScreen = ({ navigation }) => {
     }
   }
 
-  const pressHandler = () => {
+
+  //needs to be run before an Arrow key can be used to define ArrayLength
+  const firstFetch = () => {
     let date = getCurrentDate();
-    console.log(meteorid_counter);
-    if (meteorid_counter == 0 || meteorid_counter < maxMeteroids) {
+    console.log("first fetch");
+    getMeteorData(date).then(data => {
+      setMaxMeteorids(data.element_count);
+      setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+      setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][0].is_potentially_hazardous_asteroid);
+      setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][0].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+      setMeteoridData_name(data.near_earth_objects[date][0].name);
+    });
+  }
+
+  const pressHandler = () => {
+    console.log("max: " + maxMeteroids);
+    console.log("before" + meteorid_counter);
+    let date = getCurrentDate();
+    if (meteorid_counter < (maxMeteroids - 1)) {
+      console.log(meteorid_counter);
       getMeteorData(date).then(data => {
         setMaxMeteorids(data.element_count);
-        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
-        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter].is_potentially_hazardous_asteroid);
-        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
-        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter].name);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter + 1].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter + 1].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter + 1].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter + 1].name);
       });
       setMeteorid_counter(meteorid_counter + 1);
     } else {
+      console.log(meteorid_counter);
+      getMeteorData(date).then(data => {
+        setMaxMeteorids(data.element_count);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][0].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][0].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][0].name);
+      });
       setMeteorid_counter(0);
     }
   }
-
+  
   const pressHandlerBack = () => {
+    console.log("max: " + maxMeteroids);
+    console.log("before: " + meteorid_counter);
     let date = getCurrentDate();
-    console.log(meteorid_counter);
     if (meteorid_counter > 0) {
+      console.log("run with: " + meteorid_counter);
       getMeteorData(date).then(data => {
         setMaxMeteorids(data.element_count);
-        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
-        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter].is_potentially_hazardous_asteroid);
-        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
-        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter].name);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter - 1].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter - 1].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter - 1].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter - 1].name);
       });
       setMeteorid_counter(meteorid_counter - 1);
     } else {
-      setMeteorid_counter(maxMeteroids);
+      console.log("run with: " + meteorid_counter);
+      getMeteorData(date).then(data => {
+        setMaxMeteorids(data.element_count);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][maxMeteroids -1].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][maxMeteroids -1].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][maxMeteroids -1].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][maxMeteroids -1].name);
+      });
+      setMeteorid_counter(maxMeteroids -1);
     }
   }
 
@@ -129,7 +163,7 @@ export default ChartScreen = ({ navigation }) => {
                 </View>
 
                 <View style={{ flexDirection: "row", marginTop: 20 }}>
-                  <View style={{ flex: 1 }}><CustomButtonWithIcons name="ios-arrow-back" size={22} color="#E4E3E3" /></View>
+                  <View style={{ flex: 1 }}><CustomButtonWithIcons name="ios-arrow-back" size={22} color="#E4E3E3" onPress={pressHandlerBack}/></View>
                   <View style={{ flex: 1 }}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color="#E4E3E3" onPress={pressHandler} /></View>
                 </View>
 
