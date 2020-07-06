@@ -27,7 +27,7 @@ export default CustomSearchBar = props => {
         autoCorrect={false}
         lightTheme={true}
         searchIcon={false}      
-        clearIcon={<Ionicons name="md-close" size={16} color="black" onPress={onDelete} />}
+        clearIcon={<Ionicons name="md-close" size={16} color="dimgray" onPress={onDelete} />}
       />
       
   );
@@ -45,11 +45,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     borderBottomWidth: 0,
-    borderTopWidth: 0,    
+    borderTopWidth: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
 
   inputSearchBar: {
     backgroundColor: "#EEE",
+    height: 40,
   },
 
 });

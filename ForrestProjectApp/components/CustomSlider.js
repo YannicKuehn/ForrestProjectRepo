@@ -3,12 +3,13 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Slider } from 'react-native-elements';
 
 // Custom Imports
-import ColorRange from "../constants/ColorRange";
+// import ColorRange from "../constants/ColorRange";
+// const importColors = ColorRange.colorNames;
 
 export default CustomSlider = (props) => {
   const [actColor, setColor] = useState(0);
 
-  // const importColors = ColorRange.colorNames;
+  
   const colorNames = [
     "darkred",
     "crimson",
@@ -37,7 +38,8 @@ export default CustomSlider = (props) => {
         minimumValue={0}
         maximumValue={colorNames.length - 1}
         step={1}
-        thumbTintColor="grey"
+        thumbTintColor="dimgray"
+        trackStyle={"dimgray"}
       />
       <Text>{colorNames[actColor]}</Text>
 
