@@ -32,7 +32,7 @@ export default {
     fontFamily: 'OpenSansBold',
     color: Colors.lightDark1
   },
-
+  
   textHeadline2: {
     fontFamily: 'OpenSansBold',
     color: Colors.lightDark3,

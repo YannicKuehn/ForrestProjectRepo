@@ -1,14 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 
-
+// Custom Imports
 import MainNavigator from './navigation/MainNavigator';
-import FetchTestScreen from './screens/FetchTestScreen';
-import HomeScreen from './screens/HomeScreen';
-
-
 
 export default function App() {
 
@@ -22,11 +17,7 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   } else {
-    return (
-      // <AppearanceProvider>
-        <MainNavigator />
-      // </AppearanceProvider>
-    )
+    return <MainNavigator />
   };
 
 };

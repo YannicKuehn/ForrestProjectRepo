@@ -48,10 +48,7 @@ export default MainNavigator = () => {
             elevation: 7,
           },
           indicatorStyle: { backgroundColor: Colors.lightDark2 },
-          labelStyle: { color: Colors.lightDark1, fontFamily: 'OpenSansBold', }
-          // style: { backgroundColor: "#3B6978" },
-          // indicatorStyle: { backgroundColor: "#84A9AC" },
-          // labelStyle: { color: "#E4E3E3" }
+          labelStyle: { color: Colors.lightDark1, fontFamily: 'OpenSansBold' }
         }}
       >
         <Tab.Screen name="Settings" component={HomeNavigator} />
