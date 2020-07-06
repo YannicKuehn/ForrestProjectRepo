@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View, StyleSheet, Platform, TouchableNativeFeed
 
 // Custom Imports
 import TextStyles from "../constants/TextStyles";
+import Colors from "../constants/Colors";
 
 export default CustomButton = props => {
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#3B6978',
+    backgroundColor: Colors.lightDark3,
     padding: 15,
     minWidth: 40,
     maxWidth: 300,

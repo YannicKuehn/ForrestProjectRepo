@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 
+
 import MainNavigator from './navigation/MainNavigator';
 import FetchTestScreen from './screens/FetchTestScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -21,7 +22,11 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   } else {
-    return <HomeScreen />
+    return (
+      // <AppearanceProvider>
+        <MainNavigator />
+      // </AppearanceProvider>
+    )
   };
-  
+
 };
