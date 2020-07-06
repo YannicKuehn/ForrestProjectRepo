@@ -28,8 +28,8 @@ export default InfoScreen = ({ navigation }) => {
 
   const windowHeight = 620;
 
-  let paddingLandscape = 0;
-  orientation.landscape && width > 800 ? paddingLandscape = 25 : paddingLandscape = 0;
+  // let paddingLandscape = 0;
+  // orientation.landscape && width > 800 ? paddingLandscape = 25 : paddingLandscape = 0;
 
   return (
     <SafeAreaView style={devWidth > 800 ? styles.mainViewHori : styles.mainViewVerti}>
@@ -39,11 +39,11 @@ export default InfoScreen = ({ navigation }) => {
         <View style={height > windowHeight ? styles.contentViewVerti : styles.contentViewHori}>
 
           <View style={height > windowHeight ? styles.textViewVerti : styles.textViewHori}>
-            <Text style={TextStyles.infoText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
+            <Text style={[TextStyles.infoText]}>This small app was created during the course Mobile Systems at the HAW. The focus in this course was primarily on programming an app cross-platform and on the individual differences in operating systems such as iOS and Android but also on different display sizes. The team members are displayed below.</Text>
           </View>
 
           <View style={height > windowHeight ? styles.cardViewVerti : styles.cardViewHori}>
-            <Card title="Team" titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle}>
+            <Card title="Team" dividerStyle={{borderWidth: 1, borderColor: Colors.lightDark2}} titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle} >
               {
                 teamMembers.map((u, i) => {
                   return (
@@ -52,8 +52,8 @@ export default InfoScreen = ({ navigation }) => {
                       roundAvatar
                       leftAvatar={{ source: u.avatar }}
                       title={u.name}
-                      titleStyle={TextStyles.textBold}
-                    />
+                      titleStyle={TextStyles.infoNameBold}
+                      containerStyle={{backgroundColor: Colors.lightDark3}}                    />
                   )
                 })
               }
@@ -72,8 +72,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightDark3,
     alignItems: "center",
     justifyContent: "center",
-    // borderWidth: 1,
-    // borderColor: "red",
   },
 
   mainViewHori: {
@@ -92,9 +90,8 @@ const styles = StyleSheet.create({
 
   contentViewVerti: {
     flex: 1,
-    alignItems: 'flex-start',
-    // borderWidth: 1,
-    // borderColor: "red"
+    // justifyContent: 'center',
+    // alignItems: 'flex-start',
   },
 
   contentViewHori: {
@@ -108,18 +105,18 @@ const styles = StyleSheet.create({
 
   textViewVerti: {
     flex: 1,
-    // borderWidth: 1,
-    // borderColor: "green",
   },
 
   textViewHori: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: 'center',
     // borderWidth: 1,
     // borderColor: "green",
   },
 
   cardViewVerti: {
-    flex: 1,
+    flex: 2,
     // borderWidth: 1,
     // borderColor: "blue"
   },
@@ -143,15 +140,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
     elevation: 7,
-  },
-
-  container: {
-    flex: 1,
-    backgroundColor: '#3B6978',
-    alignItems: "center",
-    justifyContent: 'center',
   },
 
   textContainer: {

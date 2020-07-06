@@ -7,6 +7,7 @@ export default {
   lightDark3: '#303E46',
 
   lightDark4: '#222831',
+  lightDark4RGB: "rgba(34, 40, 49,0.5)",
 
 }
 
