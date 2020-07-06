@@ -167,7 +167,6 @@ export default ChartScreen = ({ navigation }) => {
                   <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.lightDark1} onPress={pressHandler} /></View>
                 </View>
 
-
                 <View style={styles.buttonModalCloseIcon}>
                   <CustomButtonWithIcons
                     name="md-close"
