@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, Text, View, ImageBackground, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useDimensions } from '@react-native-community/hooks';
 import Modal from 'react-native-modal';
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
+import { useSafeArea } from 'react-native-safe-area-view';
 import Colors from '../constants/Colors';
 import { getColor1, getColor2, getColor3, getColor4, getColor5 } from '../constants/Themes'
 import { ThemeContext } from '../App';
+
 
 export default HomeScreen = () => {
 
@@ -158,11 +160,11 @@ export default HomeScreen = () => {
   const imageBgSource = imageSlides[number].uri;
 
   const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
-  const toogleDarkMode = () => {
-    console.log(themeIsLight);
-    setThemeIsLight(!themeIsLight);
-    console.log(themeIsLight);
-  }
+  // const toogleDarkMode = () => {
+  //   console.log(themeIsLight);
+  //   setThemeIsLight(!themeIsLight);
+  //   console.log(themeIsLight);
+  // }
 
   return (
     // <TouchableWithoutFeedback>
