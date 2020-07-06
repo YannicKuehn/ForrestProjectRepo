@@ -1,13 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
-
-// const defaultHandler = (props) => {
-//   console.log("Klick the button");
-// }
-
-const menuIconChanger = () => { menuModalVisible === false ? "md-menu" : "md-close" };
 
 export default CustomButtonWithIcons = props => {
   return (

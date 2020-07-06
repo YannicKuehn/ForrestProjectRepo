@@ -5,10 +5,10 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useDeviceOrientation } from '@react-native-community/hooks';
 
 // Custom Imports
+import SettingsNavigator from './SettingsNavigator';
 import HomeNavigator from './HomeNavigator';
-import ChartNavigator from './ChartNavigator';
 import InfoNavigator from './InfoNavigator';
-import { getDeviceHeight } from '../screens/HomeScreen';
+import { getDeviceHeight } from '../screens/SettingsScreen';
 import Colors from '../constants/Colors';
 
 const Tab = createMaterialTopTabNavigator();
@@ -51,8 +51,8 @@ export default MainNavigator = () => {
           labelStyle: { color: Colors.dark1, fontFamily: 'OpenSansBold' }
         }}
       >
-        <Tab.Screen name="Settings" component={HomeNavigator} />
-        <Tab.Screen name="Home" component={ChartNavigator} />
+        <Tab.Screen name="Settings" component={SettingsNavigator} />
+        <Tab.Screen name="Home" component={HomeNavigator} />
         <Tab.Screen name="Info" component={InfoNavigator} />
       </Tab.Navigator>
     </NavigationContainer>

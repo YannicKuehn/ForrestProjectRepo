@@ -2,8 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Custom Imports
+import SettingsScreen from '../screens/SettingsScreen';
 import HomeScreen from '../screens/HomeScreen';
-import ChartScreen from '../screens/ChartScreen';
 import InfoScreen from '../screens/InfoScreen';
 
 const InfoStack = createStackNavigator();

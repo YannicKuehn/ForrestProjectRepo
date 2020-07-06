@@ -1,10 +1,10 @@
 export default {
 
-  dark4: '#EAEAEA',
-  dark3: '#FFF7F7',
-  dark2: '#696464',
-  dark1: '#204969',
-  dark4RGBa: "rgba(234, 234, 234,0.5)",
+  // dark4: '#EAEAEA',
+  // dark3: '#FFF7F7',
+  // dark2: '#696464',
+  // dark1: '#204969',
+  // dark4RGBa: "rgba(234, 234, 234,0.5)",
 
 
   // dark1: '#F2F4D1',
@@ -13,11 +13,11 @@ export default {
   // dark4: '#5E6073',
   // dark4RGBa: "rgba(94, 96, 115,0.5)",
 
-  // dark1: '#EEEEEE',
-  // dark2: '#32E0CA',
-  // dark3: '#303E46',
-  // dark4: '#222831',
-  // dark4RGBa: "rgba(34, 40, 49,0.5)",
+  dark1: '#EEEEEE',
+  dark2: '#32E0CA',
+  dark3: '#303E46',
+  dark4: '#222831',
+  dark4RGBa: "rgba(34, 40, 49,0.5)",
 }
 
 

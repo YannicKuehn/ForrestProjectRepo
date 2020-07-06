@@ -6,7 +6,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
-import { getDeviceWidth } from './HomeScreen';
+import { getDeviceWidth } from './SettingsScreen';
 import Colors from '../constants/Colors';
 
 export default InfoScreen = () => {
@@ -22,7 +22,7 @@ export default InfoScreen = () => {
     }
   ];
 
-  let orientation = useDeviceOrientation();
+  // let orientation = useDeviceOrientation();
   let { width, height } = useDimensions().window;
   let devWidth = getDeviceWidth();
 
