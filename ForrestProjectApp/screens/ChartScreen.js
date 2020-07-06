@@ -11,7 +11,17 @@ import Colors from '../constants/Colors';
 
 export default ChartScreen = ({ navigation }) => {
 
-  const imageBgSource = require("../assets/img/galaxy_01.jpg");
+  const picArray = [
+    '../assets/img/galaxy_01.jpg',
+    '../assets/img/galaxy_02.jpg',
+    '../assets/img/galaxy_03.jpg',
+    '../assets/img/galaxy_04.jpg',
+    '../assets/img/galaxy_05.jpg',
+    '../assets/img/galaxy_06.jpg',
+    '../assets/img/galaxy_07.jpg'
+  ];
+  
+  const imageBgSource = require('../assets/img/galaxy_03.jpg');
   const [mainModalVisible, setMainModalVisible] = useState(true);
   const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
