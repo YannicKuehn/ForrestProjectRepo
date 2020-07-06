@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View,  TouchableWithoutFeedback, Keyboard, ImageBackground, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, ImageBackground, StatusBar, Platform } from 'react-native';
 import { useDimensions } from '@react-native-community/hooks';
-import { Button } from 'react-native-elements';
-import { useDeviceOrientation } from '@react-native-community/hooks';
-import { SafeAreaProvider, useSafeArea } from 'react-native-safe-area-context';
-import SafeAreaView from 'react-native-safe-area-view';
 import Modal from 'react-native-modal';
+import { Switch } from 'react-native-switch';
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
@@ -16,12 +13,12 @@ export const getDeviceHeight = () => {
   let { height } = useDimensions().window;
   return height;
 }
-// ...
 
 export const getDeviceWidth = () => {
   let { width } = useDimensions().window;
   return width;
 }
+
 export default HomeScreen = ({ navigation }) => {
   const imageBgSource = require("../assets/img/galaxy_01.jpg");
   const [mainModalVisible, setMainModalVisible] = useState(true);
@@ -36,54 +33,9 @@ export default HomeScreen = ({ navigation }) => {
     setMainModalVisible(false);
   };
 
-  const menuModalHandler = () => {
-    menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
-  };
-
-  const api_key = 'eV83pCVzmAdK2PH28K6hX1zPYsshUbCmHRtMPasB';
-  const [meteoridData_estimatedDiameter_meter_average, setMeteoridData_estimatedDiameter_meter_average] = useState();
-  const [meteoridData_isPotentiallyHazardousAsteroid, setMeteoridData_isPotentiallyHazardousAsteroid] = useState();
-  const [meteoridData_relativeVelocity, setMeteoridData_relativeVelocity] = useState();
-  const [meteoridData_name, setMeteoridData_name] = useState();
-
-  const [meteorid_counter, setMeteorid_counter] = useState(0);
-  const [maxMeteroids, setMaxMeteorids] = useState(0);
-
-  const getCurrentDate = () => {
-    let date = new Date().getDate();
-    let month = new Date().getMonth();
-    let year = new Date().getFullYear();
-    return (year + "-" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) + "-" + (date < 10 ? "0" + date : date));
-  }
-
-  const getMeteorData = async (date) => {
-    try {
-      let response = await fetch('https://api.nasa.gov/neo/rest/v1/feed?start_date=' + date + '&end_date=' + date + '&api_key=' + api_key);
-      let json = await response.json();
-      return json;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const pressHandler = () => {
-    let date = getCurrentDate();
-    console.log(date);
-    if (meteorid_counter == 0 || meteorid_counter < maxMeteroids) {
-      getMeteorData(date).then(data => {
-        setMaxMeteorids(data.element_count);
-        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][meteorid_counter].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
-        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][meteorid_counter].is_potentially_hazardous_asteroid);
-        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][meteorid_counter].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
-        setMeteoridData_name(data.near_earth_objects[date][meteorid_counter].name);
-      });
-      setMeteorid_counter(meteorid_counter + 1);
-    } else {
-      setMeteorid_counter(0);
-    }
-  }
-
-
+  // const menuModalHandler = () => {
+  //   menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
+  // };
 
   return (
 
@@ -120,8 +72,25 @@ export default HomeScreen = ({ navigation }) => {
         <View style={height > windowHeight ? styles.mainTextVerti : styles.mainTextHori}>
           <View style={styles.textContainer}>
             <Text style={[TextStyles.infoHeadline, styles.settingsHeadline]}>Settings</Text>
-            <Text style={TextStyles.infoText}>Settings</Text>
-            <Text style={TextStyles.infoText}>WindowHeight: {height}, WindowWidth: {width} </Text>
+
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 4, alignItems: "flex-start" }}>
+                <Text style={TextStyles.infoText}>Dark- / Lightmode</Text>
+              </View>
+              <View style={{ flex: 1, alignItems: "flex-end" }}>
+                <Switch
+                  activeText={""}
+                  inActiveText={""}
+                  circleSize={25}
+                  barHeight={15}
+                  circleBorderWidth={0}
+                  backgroundActive={Colors.lightDark1}
+                  backgroundInactive={Colors.lightDark2}
+                  circleActiveColor={Colors.lightDark3}
+                  circleInActiveColor={Colors.lightDark1}
+                />
+              </View>
+            </View>
           </View>
         </View>
 

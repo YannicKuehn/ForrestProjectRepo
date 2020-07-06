@@ -148,11 +148,6 @@ export default ChartScreen = ({ navigation }) => {
           // style={{ position: "absolute", bottom: 0}}
           >
             <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
-              {/* <View style={styles.buttonAstroid}></View>
-                <View style={styles.buttonAstroid}></View> */}
-              {/* <View style={styles.buttonAstroid}>
-                  <CustomButtonWithIcons name="md-globe" size={32} color="ghostwhite" onPress={menuModalHandler} />
-                </View> */}
 
               {/* -- Daten -- */}
               <View style={height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori}>
