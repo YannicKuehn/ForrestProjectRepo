@@ -6,20 +6,18 @@ import Modal from 'react-native-modal';
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
-import { useSafeArea } from 'react-native-safe-area-view';
 import Colors from '../constants/Colors';
 
-export default ChartScreen = ({ navigation }) => {
+export default ChartScreen = () => {
 
-  const imageBgSource = require("../assets/img/galaxy_01.jpg");
-  const [mainModalVisible, setMainModalVisible] = useState(true);
+  // const [mainModalVisible, setMainModalVisible] = useState(true);
   const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   let windowHeight = 620;
   const { height } = useDimensions().window;
 
-  const mainModalHandler = () => { setMainModalVisible(false); };
+  // const mainModalHandler = () => { setMainModalVisible(false); };
 
   const menuModalHandler = () => {
     if (!buttonDisabled) {
@@ -49,7 +47,7 @@ export default ChartScreen = ({ navigation }) => {
     try {
       let response = await fetch('https://api.nasa.gov/neo/rest/v1/feed?start_date=' + date + '&end_date=' + date + '&api_key=' + api_key);
       let json = await response.json();
-      return json;
+      return json
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +92,7 @@ export default ChartScreen = ({ navigation }) => {
       setMeteorid_counter(0);
     }
   }
-  
+
   const pressHandlerBack = () => {
     console.log("max: " + maxMeteroids);
     console.log("before: " + meteorid_counter);
@@ -113,24 +111,65 @@ export default ChartScreen = ({ navigation }) => {
       console.log("run with: " + meteorid_counter);
       getMeteorData(date).then(data => {
         setMaxMeteorids(data.element_count);
-        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][maxMeteroids -1].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
-        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][maxMeteroids -1].is_potentially_hazardous_asteroid);
-        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][maxMeteroids -1].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
-        setMeteoridData_name(data.near_earth_objects[date][maxMeteroids -1].name);
+        setMeteoridData_estimatedDiameter_meter_average(((data.near_earth_objects[date][maxMeteroids - 1].estimated_diameter.meters.estimated_diameter_min + data.near_earth_objects[date][0].estimated_diameter.meters.estimated_diameter_max) / 2).toFixed(2));
+        setMeteoridData_isPotentiallyHazardousAsteroid(data.near_earth_objects[date][maxMeteroids - 1].is_potentially_hazardous_asteroid);
+        setMeteoridData_relativeVelocity(parseFloat(data.near_earth_objects[date][maxMeteroids - 1].close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2));
+        setMeteoridData_name(data.near_earth_objects[date][maxMeteroids - 1].name);
       });
-      setMeteorid_counter(maxMeteroids -1);
+      setMeteorid_counter(maxMeteroids - 1);
     }
   }
 
+
+  // -- BackgroundImage --
+  const imageSlides = {
+    0: {
+      uri: require("../assets/img/galaxy_00.jpg"),
+      credits: "@spacex"
+    },
+    1: {
+      uri: require("../assets/img/galaxy_01.jpg"),
+      credits: "@n8rayfield",
+    },
+    2: {
+      uri: require("../assets/img/galaxy_02.jpg"),
+      credits: "@mischievous_penguins",
+    },
+    3: {
+      uri: require("../assets/img/galaxy_03.jpg"),
+      credits: "@shotbycerqueira",
+    },
+    4: {
+      uri: require("../assets/img/galaxy_04.jpg"),
+      credits: "@alex_andrews",
+    },
+    5: {
+      uri: require("../assets/img/galaxy_05.jpg"),
+      credits: "@andyjh07",
+    },
+    6: {
+      uri: require("../assets/img/galaxy_06.jpg"),
+      credits: "@re_stacks",
+    }
+  }
+
+  const number = parseInt(Math.floor(Math.random() * 6));
+
+  const imageBgName = imageSlides[number].credits;
+  const imageBgSource = imageSlides[number].uri;
+
+  // console.log("RandNum: " + number);
+  // console.log("RandUri: " + imageSlides[number] + " RandUri: " + imageSlides[number].uri + " CreditsTo: " + imageSlides[number].credits);
+
   return (
-    // <TouchableWithoutFeedback>
     <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
-      {/* <StatusBar barStyle="light-content" hidden={hiddenStatusBar} translucent={false} enum="dark-content" backgroundColor="#204051" /> */}
 
       <ImageBackground source={imageBgSource} style={styles.imageBg}>
 
-        {/* <View style={{ flex: 4 }}></View> */}
-        {/* <View style={styles.viewBottom}> */}
+        <View style={styles.credits}>
+          <Text style={{ color: Colors.dark1 }}>{imageBgName}</Text>
+        </View>
+
         <View style={height > windowHeight ? styles.viewBottomVerti : styles.viewBottomHori}>
 
           {/* --- Modal Info --- */}
@@ -144,8 +183,6 @@ export default ChartScreen = ({ navigation }) => {
             onSwipeComplete={menuModalHandler}
             swipeDirection={"down"}
             style={height > windowHeight ? styles.modalStyleVerti : styles.modalStyleHori}
-          // style={{ marginTop: 600}}
-          // style={{ position: "absolute", bottom: 0}}
           >
             <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
 
@@ -155,11 +192,11 @@ export default ChartScreen = ({ navigation }) => {
                 <Text style={[TextStyles.astroidInfo]}> Name: {meteoridData_name} </Text>
                 <Text style={[TextStyles.astroidInfo]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
                 <Text style={[TextStyles.astroidInfo]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
-                <Text style={[TextStyles.astroidInfo]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
+                <Text style={[TextStyles.astroidInfo]}> potentially harzardous Astroid: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
 
-                <View style={{ flexDirection: "row", marginTop: 10, justifyContent: 'center', alignItems:"center"}}>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={Colors.lightDark1} onPress={pressHandlerBack} /></View>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.lightDark1} onPress={pressHandler} /></View>
+                <View style={{ flexDirection: "row", marginTop: 10, justifyContent: 'center', alignItems: "center" }}>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={Colors.dark1} onPress={pressHandlerBack} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.dark1} onPress={pressHandler} /></View>
                 </View>
 
                 <View style={styles.buttonModalCloseIcon}>
@@ -185,13 +222,13 @@ export default ChartScreen = ({ navigation }) => {
             <CustomButtonWithIcons
               name="md-globe"
               size={32}
-              color={Colors.lightDark1}
+              color={Colors.dark1}
               onPress={menuModalHandler}
               conStyle={{
                 paddingLeft: 5,
                 paddingRight: 5,
                 borderRadius: 25,
-                backgroundColor: Colors.lightDark4,
+                backgroundColor: Colors.dark4,
                 shadowColor: "#000",
                 shadowOffset: {
                   width: 0,
@@ -203,12 +240,10 @@ export default ChartScreen = ({ navigation }) => {
               }}
             />
           </View>
-          {/* </View> */}
         </View>
 
       </ImageBackground>
     </View>
-    // </TouchableWithoutFeedback>
   );
 }
 
@@ -279,14 +314,14 @@ const styles = StyleSheet.create({
   },
 
   astroidTextViewVerti: {
-    backgroundColor: Colors.lightDark4RGB,
+    backgroundColor: Colors.dark4RGBa,
     color: 'transparent',
     borderRadius: 7,
     padding: 10,
   },
 
   astroidTextViewHori: {
-    backgroundColor: Colors.lightDark4RGB,
+    backgroundColor: Colors.dark4RGBa,
     color: 'transparent',
     borderRadius: 7,
     padding: 10,
@@ -306,17 +341,31 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     marginRight: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
 
   buttonAstroidHori: {
     flex: 1,
     alignItems: "flex-end",
-    // borderWidth: 1,
-    // borderColor: "yellow",
     marginBottom: 10,
     marginRight: 10,
     paddingRight: 15,
     paddingBottom: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
 
   buttonModalCloseIcon: {
@@ -325,6 +374,14 @@ const styles = StyleSheet.create({
     right: -2,
     top: -3,
   },
+
+  credits: { 
+    flex: 1, 
+    alignItems: "flex-start", 
+    width: "100%", 
+    padding: 10, 
+    opacity: 0.4 
+  }
 
 
 });

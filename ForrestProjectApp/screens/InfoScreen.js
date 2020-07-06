@@ -9,7 +9,7 @@ import TextStyles from '../constants/TextStyles';
 import { getDeviceWidth } from './HomeScreen';
 import Colors from '../constants/Colors';
 
-export default InfoScreen = ({ navigation }) => {
+export default InfoScreen = () => {
 
   const teamMembers = [
     {
@@ -43,7 +43,7 @@ export default InfoScreen = ({ navigation }) => {
           </View>
 
           <View style={height > windowHeight ? styles.cardViewVerti : styles.cardViewHori}>
-            <Card title="Team" dividerStyle={{borderWidth: 1, borderColor: Colors.lightDark2}} titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle} >
+            <Card title="Team" dividerStyle={{borderWidth: 1, borderColor: Colors.dark2}} titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle} >
               {
                 teamMembers.map((u, i) => {
                   return (
@@ -53,7 +53,7 @@ export default InfoScreen = ({ navigation }) => {
                       leftAvatar={{ source: u.avatar }}
                       title={u.name}
                       titleStyle={TextStyles.infoNameBold}
-                      containerStyle={{backgroundColor: Colors.lightDark3}}                    />
+                      containerStyle={{backgroundColor: Colors.dark3}}                    />
                   )
                 })
               }
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
   mainViewVerti: {
     flex: 1,
-    backgroundColor: Colors.lightDark3,
+    backgroundColor: Colors.dark3,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   mainViewHori: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: Colors.lightDark3,
+    backgroundColor: Colors.dark3,
     ...Platform.select({
       ios: {
         padding: 50,
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   cardContainerStyle: {
     width: 210,
     margin: 0,
-    backgroundColor: Colors.lightDark4,
-    borderColor: Colors.lightDark4,
+    backgroundColor: Colors.dark4,
+    borderColor: Colors.dark4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

@@ -4,51 +4,51 @@ export default {
   textHeadline1: {
     fontFamily: 'OpenSansBold',
     color: 'darkslategrey',
-    backgroundColor: Colors.lightdark1,
+    backgroundColor: Colors.dark1,
     fontSize: 20,
     marginBottom: 10,
   },
 
   infoHeadline: {
     fontFamily: 'OpenSansBold',
-    color: Colors.lightDark1,
+    color: Colors.dark1,
     fontSize: 20,
   },
 
   infoText: {
     fontFamily: 'OpenSansReg',
-    color: Colors.lightDark1,
+    color: Colors.dark1,
     fontSize: 14,
   },
 
   infoTextBold: {
     fontFamily: 'OpenSansBold',
-    color: Colors.lightDark1,
+    color: Colors.dark1,
     fontSize: 14,
   },
 
   infoNameBold: {
     fontSize: 12,
     fontFamily: 'OpenSansBold',
-    color: Colors.lightDark1
+    color: Colors.dark1
   },
-  
+
   textHeadline2: {
     fontFamily: 'OpenSansBold',
-    color: Colors.lightDark3,
+    color: Colors.dark3,
     fontSize: 14,
   },
 
   astroidInfo: {
     fontSize: 14,
     fontFamily: 'OpenSansBold',
-    color: Colors.lightDark1,
+    color: Colors.dark1,
     padding: 3,
   },
 
   textDefault: {
     fontFamily: 'OpenSansReg',
-    color: Colors.lightDark1,
+    color: Colors.dark1,
     fontSize: 12,
     marginBottom: 20,
   },

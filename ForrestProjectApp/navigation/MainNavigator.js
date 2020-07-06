@@ -15,7 +15,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default MainNavigator = () => {
 
-  let devHeight = getDeviceHeight();
+  const devHeight = getDeviceHeight();
   const orientation = useDeviceOrientation();
 
   let paddingIPhone11 = 15;
@@ -37,7 +37,7 @@ export default MainNavigator = () => {
             })
           },
           style: {
-            backgroundColor: Colors.lightDark4,
+            backgroundColor: Colors.dark4,
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
@@ -47,8 +47,8 @@ export default MainNavigator = () => {
             shadowRadius: 4.65,
             elevation: 7,
           },
-          indicatorStyle: { backgroundColor: Colors.lightDark2 },
-          labelStyle: { color: Colors.lightDark1, fontFamily: 'OpenSansBold' }
+          indicatorStyle: { backgroundColor: Colors.dark2 },
+          labelStyle: { color: Colors.dark1, fontFamily: 'OpenSansBold' }
         }}
       >
         <Tab.Screen name="Settings" component={HomeNavigator} />

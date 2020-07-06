@@ -19,12 +19,13 @@ export const getDeviceWidth = () => {
   return width;
 }
 
-export default HomeScreen = ({ navigation }) => {
-  const imageBgSource = require("../assets/img/galaxy_01.jpg");
-  const [mainModalVisible, setMainModalVisible] = useState(true);
-  const [menuModalVisible, setMenuModalVisible] = useState(false);
+export default HomeScreen = () => {
 
-  let { width, height } = useDimensions().window;
+  const imageBgSource = require("../assets/img/galaxy_title.jpg");
+  const [mainModalVisible, setMainModalVisible] = useState(true);
+  // const [menuModalVisible, setMenuModalVisible] = useState(false);
+
+  let { height } = useDimensions().window;
   const windowHeight = 620;
 
   StatusBar.setHidden(true);
@@ -84,10 +85,10 @@ export default HomeScreen = ({ navigation }) => {
                   circleSize={25}
                   barHeight={15}
                   circleBorderWidth={0}
-                  backgroundActive={Colors.lightDark1}
-                  backgroundInactive={Colors.lightDark2}
-                  circleActiveColor={Colors.lightDark3}
-                  circleInActiveColor={Colors.lightDark1}
+                  backgroundActive={Colors.dark1}
+                  backgroundInactive={Colors.dark2}
+                  circleActiveColor={Colors.dark3}
+                  circleInActiveColor={Colors.dark1}
                 />
               </View>
             </View>
@@ -105,7 +106,7 @@ export default HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainViewVerti: {
     flex: 1,
-    backgroundColor: Colors.lightDark3,
+    backgroundColor: Colors.dark3,
     alignItems: "center",
     justifyContent: 'center',
   },
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   mainViewHori: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: Colors.lightDark3,
+    backgroundColor: Colors.dark3,
     padding: 50,
     paddingTop: 20,
     alignItems: 'flex-start',
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
   },
 
   headlineBG: {
-    backgroundColor: Colors.lightDark1,
+    backgroundColor: Colors.dark1,
     fontSize: 30,
   },
 
