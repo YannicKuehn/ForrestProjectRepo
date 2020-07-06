@@ -36,9 +36,9 @@ export default HomeScreen = ({ navigation }) => {
     setMainModalVisible(false);
   };
 
-  const menuModalHandler = () => {
+  /* const menuModalHandler = () => {
     menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
-  };
+  }; */
 
   const api_key = 'eV83pCVzmAdK2PH28K6hX1zPYsshUbCmHRtMPasB';
   const [meteoridData_estimatedDiameter_meter_average, setMeteoridData_estimatedDiameter_meter_average] = useState();
