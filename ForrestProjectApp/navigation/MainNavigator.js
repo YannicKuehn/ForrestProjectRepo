@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -10,12 +10,16 @@ import HomeNavigator from './HomeNavigator';
 import InfoNavigator from './InfoNavigator';
 import { getDeviceHeight } from '../screens/SettingsScreen';
 import Colors from '../constants/Colors';
+import { getColor1, getColor2, getColor3, getColor4, getColor5 } from '../constants/Themes'
+import { ThemeContext } from '../App';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default MainNavigator = () => {
 
-  const devHeight = getDeviceHeight();
+  const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
+
+  let devHeight = getDeviceHeight();
   const orientation = useDeviceOrientation();
 
   let paddingIPhone11 = 15;
@@ -37,7 +41,7 @@ export default MainNavigator = () => {
             })
           },
           style: {
-            backgroundColor: Colors.dark4,
+            backgroundColor: getColor4(themeIsLight),
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
@@ -47,8 +51,8 @@ export default MainNavigator = () => {
             shadowRadius: 4.65,
             elevation: 7,
           },
-          indicatorStyle: { backgroundColor: Colors.dark2 },
-          labelStyle: { color: Colors.dark1, fontFamily: 'OpenSansBold' }
+          indicatorStyle: { backgroundColor: getColor2(themeIsLight) },
+          labelStyle: { color: getColor1(themeIsLight), fontFamily: 'OpenSansBold' }
         }}
       >
         <Tab.Screen name="Settings" component={SettingsNavigator} />

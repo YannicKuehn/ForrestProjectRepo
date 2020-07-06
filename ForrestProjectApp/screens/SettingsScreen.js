@@ -48,11 +48,12 @@ export default SettingsScreen = () => {
         <Modal statusBarTransluent={false} visible={mainModalVisible} animationType="slide" style={{ margin: 0 }}>
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Nearest Objects </Text>
-              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> to Earth </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG, { backgroundColor: getColor1(themeIsLight) }]}> Nearest Objects </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG, { backgroundColor: getColor1(themeIsLight) }]}> to Earth </Text>
+
 
               <View style={{
-                marginTop: windowHeight / 12, 
+                marginTop: windowHeight / 12,
                 shadowColor: "#000",
                 shadowOffset: {
                   width: 0,
@@ -96,8 +97,8 @@ export default SettingsScreen = () => {
           </View>
         </View>
 
-      </View>
-    </TouchableWithoutFeedback>
+      </View >
+    </TouchableWithoutFeedback >
 
   )
 

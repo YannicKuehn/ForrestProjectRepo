@@ -7,6 +7,8 @@ import Modal from 'react-native-modal';
 import TextStyles from '../constants/TextStyles';
 import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
 import Colors from '../constants/Colors';
+import { getColor1, getColor2, getColor3, getColor4, getColor5 } from '../constants/Themes'
+import { ThemeContext } from '../App';
 
 export default HomeScreen = () => {
 
@@ -155,8 +157,17 @@ export default HomeScreen = () => {
   const imageBgName = imageSlides[number].credits;
   const imageBgSource = imageSlides[number].uri;
 
+  const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
+  const toogleDarkMode = () => {
+    console.log(themeIsLight);
+    setThemeIsLight(!themeIsLight);
+    console.log(themeIsLight);
+  }
+
   return (
+    // <TouchableWithoutFeedback>
     <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
+      {/* <StatusBar barStyle="light-content" hidden={hiddenStatusBar} translucent={false} enum="dark-content" backgroundColor="#204051" /> */}
 
       <ImageBackground source={imageBgSource} style={styles.imageBg}>
 
@@ -164,6 +175,8 @@ export default HomeScreen = () => {
           <Text style={{ color: Colors.dark1 }}>{imageBgName}</Text>
         </View>
 
+        {/* <View style={{ flex: 4 }}></View> */}
+        {/* <View style={styles.viewBottom}> */}
         <View style={height > windowHeight ? styles.viewBottomVerti : styles.viewBottomHori}>
 
           {/* --- Modal Info --- */}
@@ -177,20 +190,22 @@ export default HomeScreen = () => {
             onSwipeComplete={menuModalHandler}
             swipeDirection={"down"}
             style={height > windowHeight ? styles.modalStyleVerti : styles.modalStyleHori}
+          // style={{ marginTop: 600}}
+          // style={{ position: "absolute", bottom: 0}}
           >
             <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
 
               {/* -- Daten -- */}
-              <View style={height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori}>
-                <Text style={[TextStyles.infoTextBold, { marginBottom: 15 }]}> Nearest Objects ({meteorid_counter + 1}) </Text>
-                <Text style={[TextStyles.astroidInfo]}> Name: {meteoridData_name} </Text>
-                <Text style={[TextStyles.astroidInfo]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
-                <Text style={[TextStyles.astroidInfo]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
-                <Text style={[TextStyles.astroidInfo]}> potentially harzardous: {meteoridData_isPotentiallyHazardousAsteroid ? "Danger!" : "No Danger"} </Text>
+              <View style={[height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori, { backgroundColor: getColor5(themeIsLight) }]}>
+                <Text style={[TextStyles.infoTextBold, { color: getColor1(themeIsLight) }, { marginBottom: 15 }]}> Nearest Objects ({meteorid_counter + 1}) </Text>
+                <Text style={[TextStyles.astroidInfo, { color: getColor1(themeIsLight) }]}> Name: {meteoridData_name} </Text>
+                <Text style={[TextStyles.astroidInfo, { color: getColor1(themeIsLight) }]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
+                <Text style={[TextStyles.astroidInfo, { color: getColor1(themeIsLight) }]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
+                <Text style={[TextStyles.astroidInfo, { color: getColor1(themeIsLight) }]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
 
                 <View style={{ flexDirection: "row", marginTop: 10, justifyContent: 'center', alignItems: "center" }}>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={Colors.dark1} onPress={pressHandlerBack} /></View>
-                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.dark1} onPress={pressHandler} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={getColor1(themeIsLight)} onPress={pressHandlerBack} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={getColor1(themeIsLight)} onPress={pressHandler} /></View>
                 </View>
 
                 <View style={styles.buttonModalCloseIcon}>
@@ -216,13 +231,13 @@ export default HomeScreen = () => {
             <CustomButtonWithIcons
               name="md-globe"
               size={32}
-              color={Colors.dark1}
+              color={getColor1(themeIsLight)}
               onPress={menuModalHandler}
               conStyle={{
                 paddingLeft: 5,
                 paddingRight: 5,
                 borderRadius: 25,
-                backgroundColor: Colors.dark4,
+                backgroundColor: getColor4(themeIsLight),
                 shadowColor: "#000",
                 shadowOffset: {
                   width: 0,
@@ -234,10 +249,12 @@ export default HomeScreen = () => {
               }}
             />
           </View>
+          {/* </View> */}
         </View>
 
       </ImageBackground>
     </View>
+    // </TouchableWithoutFeedback>
   );
 }
 
@@ -249,7 +266,12 @@ const styles = StyleSheet.create({
 
   mainViewHori: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: "row",
+    //backgroundColor: Colors.lightDark3,
+    padding: 50,
+    paddingTop: 20,
+    alignItems: 'flex-start',
+    justifyContent: "center",
   },
 
   imageBg: {
@@ -323,6 +345,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
 
+  headlineBG: {
+    //backgroundColor: Colors.lightDark1,
+    fontSize: 30,
+  },
+
   buttonAstroid: {
     flex: 1,
     alignItems: "flex-end",
@@ -369,12 +396,12 @@ const styles = StyleSheet.create({
     top: -3,
   },
 
-  credits: { 
-    flex: 1, 
-    alignItems: "flex-start", 
-    width: "100%", 
-    padding: 10, 
-    opacity: 0.4 
+  credits: {
+    flex: 1,
+    alignItems: "flex-start",
+    width: "100%",
+    padding: 10,
+    opacity: 0.4
   }
 
 

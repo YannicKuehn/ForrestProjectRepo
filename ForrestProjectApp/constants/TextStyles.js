@@ -1,6 +1,7 @@
 import Colors from "../constants/Colors";
 
 export default {
+  
   textHeadline1: {
     fontFamily: 'OpenSansBold',
     color: 'darkslategrey',
