@@ -65,7 +65,6 @@ export default ChartScreen = ({ navigation }) => {
     }
   }
 
-
   //needs to be run before an Arrow key can be used to define ArrayLength
   const firstFetch = () => {
     let date = getCurrentDate();
@@ -134,47 +133,48 @@ export default ChartScreen = ({ navigation }) => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
-        {/* <StatusBar barStyle="light-content" hidden={hiddenStatusBar} translucent={false} enum="dark-content" backgroundColor="#204051" /> */}
+    // <TouchableWithoutFeedback>
+    <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}>
+      {/* <StatusBar barStyle="light-content" hidden={hiddenStatusBar} translucent={false} enum="dark-content" backgroundColor="#204051" /> */}
 
-        <ImageBackground source={imageBgSource} style={styles.imageBg}>
+      <ImageBackground source={imageBgSource} style={styles.imageBg}>
 
-          <View style={{ flex: 4 }}></View>
-          <View style={styles.viewBottom}>
+        {/* <View style={{ flex: 4 }}></View> */}
+        {/* <View style={styles.viewBottom}> */}
+        <View style={height > windowHeight ? styles.viewBottomVerti : styles.viewBottomHori}>
 
-            {/* --- Modal Info --- */}
-            <Modal
-              isVisible={menuModalVisible}
-              onSwipeMove={menuModalHandler}
-              backdropOpacity={0}
-              animationIn={"fadeInUp"}
-              animationOut={"fadeOutDown"}
-              onBackdropPress={menuModalHandler}
-              onSwipeComplete={menuModalHandler}
-              swipeDirection={"down"}
-              style={{ justifyContent: "flex-end", alignItems: "center", margin: 0 }}
-            // style={{ marginTop: 600}}
-            // style={{ position: "absolute", bottom: 0}}
-            >
-              <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
-                {/* <View style={styles.buttonAstroid}></View>
+          {/* --- Modal Info --- */}
+          <Modal
+            isVisible={menuModalVisible}
+            onSwipeMove={menuModalHandler}
+            backdropOpacity={0}
+            animationIn={"fadeInUp"}
+            animationOut={"fadeOutDown"}
+            onBackdropPress={menuModalHandler}
+            onSwipeComplete={menuModalHandler}
+            swipeDirection={"down"}
+            style={height > windowHeight ? styles.modalStyleVerti : styles.modalStyleHori}
+          // style={{ marginTop: 600}}
+          // style={{ position: "absolute", bottom: 0}}
+          >
+            <View style={height > windowHeight ? styles.modalContentVerti : styles.modalContentHori}>
+              {/* <View style={styles.buttonAstroid}></View>
                 <View style={styles.buttonAstroid}></View> */}
-                {/* <View style={styles.buttonAstroid}>
+              {/* <View style={styles.buttonAstroid}>
                   <CustomButtonWithIcons name="md-globe" size={32} color="ghostwhite" onPress={menuModalHandler} />
                 </View> */}
 
-                {/* -- Daten -- */}
-                <View style={styles.astridTextView}>
-                  <Text style={[TextStyles.astroidInfo]}> Name: {meteoridData_name} </Text>
-                  <Text style={[TextStyles.astroidInfo]}> Avarage estimated diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
-                  <Text style={[TextStyles.astroidInfo]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
-                  <Text style={[TextStyles.astroidInfo]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
-                </View>
+              {/* -- Daten -- */}
+              <View style={height > windowHeight ? styles.astroidTextViewVerti : styles.astroidTextViewHori}>
+                <Text style={[TextStyles.infoTextBold, { marginBottom: 15 }]}> Nearest Objects ({meteorid_counter + 1}) </Text>
+                <Text style={[TextStyles.astroidInfo]}> Name: {meteoridData_name} </Text>
+                <Text style={[TextStyles.astroidInfo]}> Avg. est. diameter: {meteoridData_estimatedDiameter_meter_average} m </Text>
+                <Text style={[TextStyles.astroidInfo]}> relative velocity: {meteoridData_relativeVelocity} km/h  </Text>
+                <Text style={[TextStyles.astroidInfo]}> Potentielle Gefahr: {meteoridData_isPotentiallyHazardousAsteroid ? "Gefährlich!" : "Nicht gefährlich"} </Text>
 
-                <View style={{ flexDirection: "row", marginTop: 20 }}>
-                  <View style={{ flex: 1 }}><CustomButtonWithIcons name="ios-arrow-back" size={22} color="#E4E3E3" onPress={pressHandlerBack}/></View>
-                  <View style={{ flex: 1 }}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color="#E4E3E3" onPress={pressHandler} /></View>
+                <View style={{ flexDirection: "row", marginTop: 10, justifyContent: 'center', alignItems:"center"}}>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-back" size={22} color={Colors.lightDark1} onPress={pressHandlerBack} /></View>
+                  <View style={styles.arrowLeftRight}><CustomButtonWithIcons name="ios-arrow-forward" size={22} color={Colors.lightDark1} onPress={pressHandler} /></View>
                 </View>
 
                 <View style={styles.buttonModalCloseIcon}>
@@ -188,54 +188,53 @@ export default ChartScreen = ({ navigation }) => {
                       paddingRight: 5,
                     }} />
                 </View>
-
               </View>
-            </Modal>
 
-            <View style={styles.buttons}>
-              <View style={styles.buttonAstroid}>
-
-                {/* OpenModal */}
-                <CustomButtonWithIcons
-                  name="md-globe"
-                  size={32}
-                  color={Colors.lightDark1}
-                  onPress={menuModalHandler}
-                  conStyle={{
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    borderRadius: 25,
-                    backgroundColor: Colors.lightDark4,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 3,
-                    },
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 7,
-                  }}
-                />
-              </View>
             </View>
-          </View>
+          </Modal>
 
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
+          {/* <View style={styles.buttons}> */}
+          <View style={height > windowHeight ? styles.buttonAstroidVerti : styles.buttonAstroidHori}>
+
+            {/* OpenModal */}
+            <CustomButtonWithIcons
+              name="md-globe"
+              size={32}
+              color={Colors.lightDark1}
+              onPress={menuModalHandler}
+              conStyle={{
+                paddingLeft: 5,
+                paddingRight: 5,
+                borderRadius: 25,
+                backgroundColor: Colors.lightDark4,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
+                elevation: 7,
+              }}
+            />
+          </View>
+          {/* </View> */}
+        </View>
+
+      </ImageBackground>
+    </View>
+    // </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   mainViewVerti: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
   },
 
   mainViewHori: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: 'center',
   },
 
@@ -247,59 +246,99 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  modalContentVerti: {
+    width: "75%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginBottom: 80,
   },
 
-  viewBottom: {
+  modalContentHori: {
+    width: "50%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: 40,
+  },
+
+  viewBottomVerti: {
     flex: 1,
-    // borderWidth: 1, 
-    // borderColor: "yellow",
+    justifyContent: 'flex-end',
+    alignItems: "flex-end",
     width: "100%",
   },
 
-  buttons: {
+  viewBottomHori: {
     flex: 1,
     flexDirection: "row",
-    padding: 20,
-    // borderWidth: 1,
-    // borderColor: "yellow",
-    marginBottom: 20,
+    justifyContent: 'flex-end',
+    alignItems: "flex-end",
+    width: "100%",
+  },
+
+  arrowLeftRight: {
+    flex: 1,
+  },
+
+  modalStyleVerti: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    margin: 0,
+  },
+
+  modalStyleHori: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    margin: 0,
+  },
+
+  astroidTextViewVerti: {
+    backgroundColor: Colors.lightDark4RGB,
+    color: 'transparent',
+    borderRadius: 7,
+    padding: 10,
+  },
+
+  astroidTextViewHori: {
+    backgroundColor: Colors.lightDark4RGB,
+    color: 'transparent',
+    borderRadius: 7,
+    padding: 10,
+    marginRight: -25,
+    marginBottom: 50,
   },
 
   buttonAstroid: {
     flex: 1,
     alignItems: "flex-end",
+    margin: 10,
+    paddingRight: 15,
+    paddingBottom: 15,
   },
 
-  modalContentVerti: {
-    width: "80%",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    // borderWidth: 1,
-    // borderColor: "red",
-    paddingTop: 25,
-    marginBottom: 100,
+  buttonAstroidVerti: {
+    padding: 10,
+    marginBottom: 10,
+    marginRight: 10,
   },
 
-  modalContentHori: {
-    width: "80%",
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
+  buttonAstroidHori: {
+    flex: 1,
+    alignItems: "flex-end",
     // borderWidth: 1,
-    // borderColor: "red",
-    paddingTop: 25,
-    marginBottom: 100,
+    // borderColor: "yellow",
+    marginBottom: 10,
+    marginRight: 10,
+    paddingRight: 15,
+    paddingBottom: 15,
   },
 
   buttonModalCloseIcon: {
     height: 40,
     position: "absolute",
-    right: 0,
-    top: 0
+    right: -2,
+    top: -3,
   },
 
 

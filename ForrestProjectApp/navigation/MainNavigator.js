@@ -2,7 +2,6 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useDimensions } from '@react-native-community/hooks';
 import { useDeviceOrientation } from '@react-native-community/hooks';
 
 // Custom Imports
@@ -11,19 +10,13 @@ import ChartNavigator from './ChartNavigator';
 import InfoNavigator from './InfoNavigator';
 import { getDeviceHeight } from '../screens/HomeScreen';
 import Colors from '../constants/Colors';
-import TextStyles from '../constants/TextStyles';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default MainNavigator = () => {
 
-  // let { windowHeight } = useDimensions().window;
-
   let devHeight = getDeviceHeight();
-  // console.log(devHeight);
-
   const orientation = useDeviceOrientation();
-  // console.log('is orientation landscape: ', orientation.landscape);
 
   let paddingIPhone11 = 15;
   if (Platform.OS === "ios" && Platform.Version >= 11 && orientation.portrait && devHeight > 800) {

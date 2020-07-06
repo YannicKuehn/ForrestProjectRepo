@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ForrestProjectApp",
-    "slug": "ForrestProjectApp",
+    "name": "NearestObjectsToEarthApp",
+    "slug": "NearestObjectsToEarthApp",
     "platforms": [
       "ios",
       "android",

@@ -11,9 +11,6 @@ import Modal from 'react-native-modal';
 import TextStyles from '../constants/TextStyles';
 import CustomButton from '../components/CustomButton';
 import Colors from '../constants/Colors';
-// import CustomSearchBar from '../components/CustomSearchBar';
-// import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
-// import CustomSlider from '../components/CustomSlider';
 
 export const getDeviceHeight = () => {
   let { height } = useDimensions().window;
@@ -91,19 +88,14 @@ export default HomeScreen = ({ navigation }) => {
   return (
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori} forceInset={{ top: 'never' }}>
-
-        {/* <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori}> */}
-        {/* {(Platform.OS === "android" && Platform.Version >= 21) ? */}
-        {/* // <StatusBar barStyle="dark-content" hidden={true} translucent={false} backgroundColor="#204051" />
-    // : null */}
-        {/* } */}
+      <View style={height > windowHeight ? styles.mainViewVerti : styles.mainViewHori} forceInset={{ top: 'never' }}>
 
         {/* --- MainModal Enter Site --- */}
+
         <Modal statusBarTransluent={false} visible={mainModalVisible} animationType="slide" style={{ margin: 0 }}>
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Nearest Object </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Nearest Objects </Text>
               <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> to Earth </Text>
 
               <View style={{
@@ -114,7 +106,6 @@ export default HomeScreen = ({ navigation }) => {
                 },
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
-
                 elevation: 7,
               }}>
                 <CustomButton title="Enter Site" onPress={mainModalHandler} />
@@ -124,46 +115,61 @@ export default HomeScreen = ({ navigation }) => {
           </View>
         </Modal>
 
+        {/* -- Content Page -- */}
 
-
-        {/* --- SearchBar --- */}
-        <View style={height > windowHeight ? styles.searchBarVertical : styles.searchBarHorizontal}>
-          <CustomButtonWithIcons name="md-menu" size={32} color="black" />
-          <CustomSearchBar placeholder="Country" />
-          <CustomButtonWithIcons name="md-search" size={32} color="black" />
+        <View style={height > windowHeight ? styles.mainTextVerti : styles.mainTextHori}>
+          <View style={styles.textContainer}>
+            <Text style={[TextStyles.infoHeadline, styles.settingsHeadline]}>Settings</Text>
+            <Text style={TextStyles.infoText}>Settings</Text>
+            <Text style={TextStyles.infoText}>WindowHeight: {height}, WindowWidth: {width} </Text>
+          </View>
         </View>
 
-        <View style={styles.container}>
-
-
-        </View>
-
-        {/* --- Slider --- */}
-        <View style={styles.sliderContainer}>
-          <CustomSlider />
-        </View>
-
-      </SafeAreaView>
+      </View>
     </TouchableWithoutFeedback>
 
   )
 
 };
 
-//const rootElement = document.getElementById("root");
-//ReactDOM.render(<HomeScreen />, rootElement);
 
 const styles = StyleSheet.create({
   mainViewVerti: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.lightDark3,
     alignItems: "center",
+    justifyContent: 'center',
   },
 
   mainViewHori: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: 'center',
+    flexDirection: "row",
+    backgroundColor: Colors.lightDark3,
+    padding: 50,
+    paddingTop: 20,
+    alignItems: 'flex-start',
+    justifyContent: "center",
+  },
+
+  textContainer: {
+    flex: 1,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
+
+  mainTextVerti: {
+    flex: 1,
+    width: "80%",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    paddingTop: 25,
+  },
+
+  mainTextHori: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
 
   imageBg: {
@@ -178,40 +184,29 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   viewContainer: {
     flex: 1,
     justifyContent: "space-evenly",
   },
 
-  searchBarVertical: {
-    // paddingTop: 30,
-    flexDirection: "row",
-    alignItems: "center",
+  menuModal: {
+    flex: 1,
+    width: "60%",
+    alignItems: "baseline",
+    justifyContent: "flex-start",
+    padding: 20,
+    backgroundColor: "white"
   },
 
-  searchBarHorizontal: {
-    // paddingTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
+  buttonEnterSite: {
+    height: 40,
+    position: "absolute",
+    right: 0
   },
 
-  sliderContainer: {
-    width: "80%",
-    marginBottom: 10,
-  },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+  settingsHeadline: {
+    marginTop: 0,
+    marginBottom: 20,
   },
 
 });

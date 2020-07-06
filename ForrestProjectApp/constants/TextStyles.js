@@ -27,6 +27,12 @@ export default {
     fontSize: 14,
   },
 
+  infoNameBold: {
+    fontSize: 12,
+    fontFamily: 'OpenSansBold',
+    color: Colors.lightDark1
+  },
+
   textHeadline2: {
     fontFamily: 'OpenSansBold',
     color: Colors.lightDark3,
