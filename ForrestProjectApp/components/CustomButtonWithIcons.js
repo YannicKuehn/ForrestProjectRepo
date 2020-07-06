@@ -16,7 +16,15 @@ export default CustomButtonWithIcons = props => {
       icon={<Ionicons name={props.name} size={props.size} color={props.color} />}
       onPress={props.onPress}
       // containerStyle={{ justifyContent: 'space-evenly',}}
-      containerStyle={{ paddingLeft: 5, paddingRight: 5 }}
+      disabled={props.disabled}
+      containerStyle={props.conStyle}
+      // iconContainerStyle={props.conStyle}
+      // containerStyle={{ 
+      //   paddingLeft: 5, 
+      //   paddingRight: 5,
+      //   backgroundColor: "#E4E3E3", 
+      //   borderRadius: 25,
+      // }}
     />
   );
 };

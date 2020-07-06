@@ -9,9 +9,10 @@ import Modal from 'react-native-modal';
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import CustomButton from '../components/CustomButton';
-import CustomSearchBar from '../components/CustomSearchBar';
-import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
-import CustomSlider from '../components/CustomSlider';
+import Colors from '../constants/Colors';
+// import CustomSearchBar from '../components/CustomSearchBar';
+// import CustomButtonWithIcons from '../components/CustomButtonWithIcons';
+// import CustomSlider from '../components/CustomSlider';
 
 export const getDeviceHeight = () => {
   let { height } = useDimensions().window;
@@ -39,7 +40,7 @@ export default HomeScreen = ({ navigation }) => {
   };
 
   const menuModalHandler = () => {
-    menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false)
+    menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
   };
 
 
@@ -54,27 +55,32 @@ export default HomeScreen = ({ navigation }) => {
             // : null */}
         {/* } */}
 
-        {/* --- MainModal --- */}
+        {/* --- MainModal Enter Site --- */}
         <Modal statusBarTransluent={false} visible={mainModalVisible} animationType="slide" style={{ margin: 0 }}>
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Nearest Object </Text></View>
-              <View><Text style={[TextStyles.textHeadline1, styles.headlineBG]}> to Earth </Text></View>
-              <View style={{ marginTop: 100 }}>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> Nearest Object </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG]}> to Earth </Text>
+
+              <View style={{
+                marginTop: windowHeight / 12, shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
+
+                elevation: 7,
+              }}>
                 <CustomButton title="Enter Site" onPress={mainModalHandler} />
               </View>
+
             </ImageBackground>
           </View>
         </Modal>
 
 
-
-
-
-
-
-
-        
 
         {/* --- SearchBar --- */}
         {/* <View style={height > windowHeight ? styles.searchBarVertical : styles.searchBarHorizontal}>
@@ -167,6 +173,7 @@ const styles = StyleSheet.create({
   },
 
   headlineBG: {
+    backgroundColor: Colors.lightDark1,
     fontSize: 30,
   },
 
@@ -179,8 +186,7 @@ const styles = StyleSheet.create({
 
   viewContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "stretch"
+    justifyContent: "space-evenly",
   },
 
   menuModal: {

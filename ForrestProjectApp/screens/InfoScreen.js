@@ -7,6 +7,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
 import { getDeviceWidth } from './HomeScreen';
+import Colors from '../constants/Colors';
 
 export default InfoScreen = ({ navigation }) => {
 
@@ -33,16 +34,16 @@ export default InfoScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={devWidth > 800 ? styles.mainViewHori : styles.mainViewVerti}>
       <View style={styles.textContainer}>
-        <Text style={[TextStyles.InfoHeadline, { marginTop: 0, marginBottom: 20 }]}>InfoScreen</Text>
+        <Text style={[TextStyles.infoHeadline, { marginTop: 0, marginBottom: 20 }]}>InfoScreen</Text>
 
         <View style={height > windowHeight ? styles.contentViewVerti : styles.contentViewHori}>
 
           <View style={height > windowHeight ? styles.textViewVerti : styles.textViewHori}>
-            <Text style={TextStyles.InfoText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
+            <Text style={TextStyles.infoText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
           </View>
 
           <View style={height > windowHeight ? styles.cardViewVerti : styles.cardViewHori}>
-            <Card title="Team" titleStyle={TextStyles.textHeadline2} containerStyle={{ width: 210, margin: 0, backgroundColor: "#84A9AC", borderColor: "#84A9AC" }}>
+            <Card title="Team" titleStyle={TextStyles.infoTextBold} containerStyle={styles.cardContainerStyle}>
               {
                 teamMembers.map((u, i) => {
                   return (
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
 
   mainViewVerti: {
     flex: 1,
-    backgroundColor: '#204051',
+    backgroundColor: Colors.lightDark3,
     alignItems: "center",
     justifyContent: "center",
     // borderWidth: 1,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   mainViewHori: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: '#204051',
+    backgroundColor: Colors.lightDark3,
     ...Platform.select({
       ios: {
         padding: 50,
@@ -128,6 +129,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // borderColor: "blue",
     // borderWidth: 1,
+  },
+
+  cardContainerStyle: {
+    width: 210,
+    margin: 0,
+    backgroundColor: Colors.lightDark4,
+    borderColor: Colors.lightDark4,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
   },
 
   container: {

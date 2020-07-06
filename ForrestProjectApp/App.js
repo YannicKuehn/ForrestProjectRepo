@@ -2,11 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
-import { AppearanceProvider } from 'react-native-appearance';
 
 import MainNavigator from './navigation/MainNavigator';
-
-
 
 export default function App() {
 
@@ -18,11 +15,7 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   } else {
-    return (
-      // <AppearanceProvider>
-        <MainNavigator />
-      // </AppearanceProvider>
-    )
+    return <MainNavigator />
   };
 
 };

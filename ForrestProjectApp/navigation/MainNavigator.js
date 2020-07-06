@@ -10,16 +10,18 @@ import HomeNavigator from './HomeNavigator';
 import ChartNavigator from './ChartNavigator';
 import InfoNavigator from './InfoNavigator';
 import { getDeviceHeight } from '../screens/HomeScreen';
+import Colors from '../constants/Colors';
+import TextStyles from '../constants/TextStyles';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default MainNavigator = () => {
-  
+
   // let { windowHeight } = useDimensions().window;
 
   let devHeight = getDeviceHeight();
   // console.log(devHeight);
-  
+
   const orientation = useDeviceOrientation();
   // console.log('is orientation landscape: ', orientation.landscape);
 
@@ -27,7 +29,6 @@ export default MainNavigator = () => {
   if (Platform.OS === "ios" && Platform.Version >= 11 && orientation.portrait && devHeight > 800) {
     paddingIPhone11 = 45;
   }
-
 
   return (
     <NavigationContainer>
@@ -42,9 +43,22 @@ export default MainNavigator = () => {
               }
             })
           },
-          style: { backgroundColor: "#3B6978" },
-          indicatorStyle: { backgroundColor: "#84A9AC" },
-          labelStyle: { color: "#E4E3E3" }
+          style: {
+            backgroundColor: Colors.lightDark4,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowOpacity: 0.29,
+            shadowRadius: 4.65,
+            elevation: 7,
+          },
+          indicatorStyle: { backgroundColor: Colors.lightDark2 },
+          labelStyle: { color: Colors.lightDark1, fontFamily: 'OpenSansBold', }
+          // style: { backgroundColor: "#3B6978" },
+          // indicatorStyle: { backgroundColor: "#84A9AC" },
+          // labelStyle: { color: "#E4E3E3" }
         }}
       >
         <Tab.Screen name="Settings" component={HomeNavigator} />

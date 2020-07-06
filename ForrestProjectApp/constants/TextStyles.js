@@ -1,34 +1,48 @@
+import Colors from "../constants/Colors";
+
 export default {
   textHeadline1: {
     fontFamily: 'OpenSansBold',
     color: 'darkslategrey',
-    backgroundColor: "#E4E3E3",
+    backgroundColor: Colors.lightdark1,
     fontSize: 20,
     marginBottom: 10,
   },
 
-  InfoHeadline: {
+  infoHeadline: {
     fontFamily: 'OpenSansBold',
-    color: '#E4E3E3',
+    color: Colors.lightDark1,
     fontSize: 20,
   },
 
-  InfoText: {
+  infoText: {
     fontFamily: 'OpenSansReg',
-    color: '#E4E3E3',
+    color: Colors.lightDark1,
+    fontSize: 14,
+  },
+
+  infoTextBold: {
+    fontFamily: 'OpenSansBold',
+    color: Colors.lightDark1,
     fontSize: 14,
   },
 
   textHeadline2: {
     fontFamily: 'OpenSansBold',
-    color: 'darkslategrey',
-    // backgroundColor: "#E4E3E3",
+    color: Colors.lightDark3,
     fontSize: 14,
+  },
+
+  astroidInfo: {
+    fontSize: 14,
+    fontFamily: 'OpenSansBold',
+    color: Colors.lightDark1,
+    padding: 3,
   },
 
   textDefault: {
     fontFamily: 'OpenSansReg',
-    color: 'dimgray',
+    color: Colors.lightDark1,
     fontSize: 12,
     marginBottom: 20,
   },
