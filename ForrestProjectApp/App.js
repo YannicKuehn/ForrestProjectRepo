@@ -1,7 +1,7 @@
 import React, { createContext, useState} from 'react';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
-import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { AppearanceProvider } from 'react-native-appearance';
 
 // Custom Imports
 import MainNavigator from './navigation/MainNavigator';
@@ -9,7 +9,7 @@ import MainNavigator from './navigation/MainNavigator';
 export const ThemeContext = createContext({});
 
 export default function App() {
-  const [themeIsLight, setThemeIsLight] = useState(true);
+  const [themeIsLight, setThemeIsLight] = useState(false);
 
   let [fontsLoaded] = useFonts({
     'OpenSansBold': require('./assets/fonts/open_sans/OpenSans-Bold.ttf'),

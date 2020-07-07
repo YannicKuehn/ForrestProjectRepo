@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, ImageBackground, StatusBar, Platform, Switch } from 'react-native';
 import { useDimensions } from '@react-native-community/hooks';
 import Modal from 'react-native-modal';
-import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-appearance';
-
 
 // Custom Imports
 import TextStyles from '../constants/TextStyles';
@@ -23,7 +21,7 @@ export const getDeviceWidth = () => {
 }
 
 export default SettingsScreen = () => {
-  const imageBgSource = require("../assets/img/galaxy_01.jpg");
+  const imageBgSource = require("../assets/img/galaxy_title.jpg");
   const [mainModalVisible, setMainModalVisible] = useState(true);
   const [menuModalVisible, setMenuModalVisible] = useState(false);
 
@@ -36,30 +34,26 @@ export default SettingsScreen = () => {
     setMainModalVisible(false);
   };
 
-  // const menuModalHandler = () => {
-  //   menuModalVisible === false ? setMenuModalVisible(true) : setMenuModalVisible(false);
-  // };
-
   const [themeIsLight, setThemeIsLight] = useContext(ThemeContext);
   const toogleDarkMode = () => {
     console.log(themeIsLight);
     setThemeIsLight(!themeIsLight);
-    console.log(themeIsLight);    
+    console.log(themeIsLight);
   }
 
 
   return (
 
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={[height > windowHeight ? styles.mainViewVerti : styles.mainViewHori, {backgroundColor: getColor3(themeIsLight)}]}>
+      <View style={[height > windowHeight ? styles.mainViewVerti : styles.mainViewHori, { backgroundColor: getColor3(themeIsLight) }]}>
 
         {/* --- MainModal Enter Site --- */}
 
         <Modal statusBarTransluent={false} visible={mainModalVisible} animationType="slide" style={{ margin: 0 }}>
           <View style={styles.viewContainer}>
             <ImageBackground source={imageBgSource} style={styles.imageBg}>
-              <Text style={[TextStyles.textHeadline1, styles.headlineBG, {backgroundColor: getColor1(themeIsLight)}]}> Nearest Objects </Text>
-              <Text style={[TextStyles.textHeadline1, styles.headlineBG, {backgroundColor: getColor1(themeIsLight)}]}> to Earth </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG, { backgroundColor: getColor1(themeIsLight) }]}> Nearest Objects </Text>
+              <Text style={[TextStyles.textHeadline1, styles.headlineBG, { backgroundColor: getColor1(themeIsLight) }]}> to Earth </Text>
 
               <View style={{
                 marginTop: windowHeight / 12, shadowColor: "#000",
@@ -79,19 +73,21 @@ export default SettingsScreen = () => {
         </Modal>
 
         {/* -- Content Page -- */}
-
+        
         <View style={[height > windowHeight ? styles.mainTextVerti : styles.mainTextHori]}>
           <View style={styles.textContainer}>
-            <Text style={[TextStyles.infoHeadline, styles.settingsHeadline]}>Settings</Text>
+            <Text style={[TextStyles.infoHeadline, styles.settingsHeadline, { color: getColor1(themeIsLight) }]}>
+              Settings
+            </Text>
 
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 4, alignItems: "flex-start" }}>
-                <Text style={TextStyles.infoText}>Dark- / Lightmode</Text>
+                <Text style={[TextStyles.infoText, { color: getColor1(themeIsLight) }]}>Dark- / Lightmode</Text>
               </View>
               <View style={{ flex: 1, alignItems: "flex-end" }}>
                 <Switch
                   trackColor={{ false: "#767577", true: "#81b0ff" }}
-                  thumbColor={themeIsLight ? "#f5dd4b" : "#f4f3f4"}
+                  thumbColor={themeIsLight ? "#204969" : "#f4f3f4"}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toogleDarkMode}
                   value={themeIsLight}
@@ -103,16 +99,13 @@ export default SettingsScreen = () => {
 
       </View>
     </TouchableWithoutFeedback>
-
   )
-
 };
 
 
 const styles = StyleSheet.create({
   mainViewVerti: {
     flex: 1,
-    //backgroundColor: Colors.lightDark3,
     alignItems: "center",
     justifyContent: 'center',
   },
@@ -120,7 +113,6 @@ const styles = StyleSheet.create({
   mainViewHori: {
     flex: 1,
     flexDirection: "row",
-    //backgroundColor: Colors.lightDark3,
     padding: 50,
     paddingTop: 20,
     alignItems: 'flex-start',
@@ -156,7 +148,6 @@ const styles = StyleSheet.create({
   },
 
   headlineBG: {
-    //backgroundColor: Colors.lightDark1,
     fontSize: 30,
   },
 
